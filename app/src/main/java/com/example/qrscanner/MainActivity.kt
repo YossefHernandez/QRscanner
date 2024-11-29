@@ -49,9 +49,9 @@ class MainActivity : ComponentActivity() {
                     filePath = "/storage/emulated/0/Documents/Reportes/Visitas.csv",
                     email = "yossef3221@gmail.com",
                     subject = "Reporte",
-                    body = "Reporte de tiendas visitadas"
+                    body = "Reporte de tiendas visitadas",
                 )
-                restartApp(context = this)
+                 //restartApp(context = this)
             })
         }
     }
@@ -215,6 +215,7 @@ fun SendExcelButton(onConfirm: (Context) -> Unit) {
         }
     }
 }
+
 fun sendFileToGmail(context: Context, filePath: String, email: String, subject: String, body: String) {
     val file = File(filePath)
     if (file.exists() && file.length() > 0) {
@@ -234,12 +235,12 @@ fun sendFileToGmail(context: Context, filePath: String, email: String, subject: 
                 putExtra(Intent.EXTRA_TEXT, body)
                 putExtra(Intent.EXTRA_STREAM, uri)
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                setPackage("com.google.android.gm") // Especifica Gmail directamente
             }
+            val chooserIntent = Intent.createChooser(intent, "Selecciona un cliente de correo")
 
             // Verificar si Gmail está disponible y lanzar el Intent
             try {
-                context.startActivity(intent)
+                context.startActivity(chooserIntent)
             } catch (e: Exception) {
                 Toast.makeText(context, "Gmail no está instalado o no disponible", Toast.LENGTH_SHORT).show()
             }
@@ -250,6 +251,7 @@ fun sendFileToGmail(context: Context, filePath: String, email: String, subject: 
         Toast.makeText(context, "Archivo no disponible para enviar", Toast.LENGTH_SHORT).show()
     }
 }
+
 fun guardarInfo(
     info: String
 ){
