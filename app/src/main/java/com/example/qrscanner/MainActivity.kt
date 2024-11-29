@@ -268,7 +268,7 @@ fun guardarInfo(
     if (!csvFile.exists()) {
         csvFile.createNewFile()
 
-        val header = "Código de Cliente, Razón Social\n"
+        val header = "Codigo de Cliente, Razon Social\n"
         FileOutputStream(csvFile, true).use { fos ->
             fos.bufferedWriter().use {
                 it.append(header)
